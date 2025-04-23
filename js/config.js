@@ -119,7 +119,6 @@ const API_SITES = {
     yutu: {
         api: 'https://yutuzy10.com',
         name: '玉兔资源',
-        adult: true
     }
     // 您可以按需添加更多源
 };
