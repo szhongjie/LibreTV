@@ -30,12 +30,14 @@ export default async function middleware(request) {
   if (password) {
     passwordHash = await sha256(password);
   }
-  const modifiedHtml = originalHtml.replace(
+  
+  // 替换密码占位符
+  let modifiedHtml = originalHtml.replace(
     'window.__ENV__.PASSWORD = "{{PASSWORD}}";',
     `window.__ENV__.PASSWORD = "${passwordHash}"; // SHA-256 hash`
   );
-  
-  // Create a new response with the modified HTML
+
+  // 修复Response构造
   return new Response(modifiedHtml, {
     status: response.status,
     statusText: response.statusText,
